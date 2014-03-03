@@ -19,7 +19,7 @@ $(document).ready(function(){
 /* Styles for when the select box is hovered */
 }
 
-.custom-select.custom-select-hpen {
+.custom-select.custom-select-open {
 /* Styles for when the select box is open */
 }
 
