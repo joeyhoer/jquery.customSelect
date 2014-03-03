@@ -66,6 +66,13 @@
                     .addClass('has-custom-select')
                     .on('render.customSelect', function () {
                         changed($select,customSelectSpan);
+
+                        $select.css({
+                            width:    '',
+                            position: '',
+                            height:   '',
+                            fontSize: ''
+                        });
                         
                         var selectBoxWidth = parseInt($select.outerWidth(), 10) -
                                 (parseInt(customSelectSpan.outerWidth(), 10) -
