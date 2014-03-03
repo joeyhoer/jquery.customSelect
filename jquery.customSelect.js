@@ -18,7 +18,7 @@
                 return this;
             }
             var defaults = {
-                    customClass: 'customSelect',
+                    customClass: 'custom-select',
                     mapClass:    true,
                     mapStyle:    true
             },
@@ -32,23 +32,23 @@
                 customSelectSpanInner.html(html);
                 
                 if (currentSelected.attr('disabled')) {
-                    customSelectSpan.addClass(getClass('DisabledOption'));
+                    customSelectSpan.addClass(getClass('disabled-option'));
                 } else {
-                    customSelectSpan.removeClass(getClass('DisabledOption'));
+                    customSelectSpan.removeClass(getClass('disabled-option'));
                 }
                 
                 setTimeout(function () {
-                    customSelectSpan.removeClass(getClass('Open'));
+                    customSelectSpan.removeClass(getClass('open'));
                     $(document).off('mouseup.customSelect');                  
                 }, 60);
             },
             getClass = function(suffix){
-                return prefix + suffix;
+                return prefix + (prefix ? '-': '') + suffix;
             };
 
             return this.each(function () {
                 var $select = $(this),
-                    customSelectInnerSpan = $('<span />').addClass(getClass('Inner')),
+                    customSelectInnerSpan = $('<span />').addClass(getClass('inner')),
                     customSelectSpan = $('<span />');
 
                 $select.after(customSelectSpan.append(customSelectInnerSpan));
@@ -63,7 +63,7 @@
                 }
 
                 $select
-                    .addClass('hasCustomSelect')
+                    .addClass('has-custom-select')
                     .on('render.customSelect', function () {
                         changed($select,customSelectSpan);
                         
@@ -79,9 +79,9 @@
                         var selectBoxHeight = customSelectSpan.outerHeight();
 
                         if ($select.attr('disabled')) {
-                            customSelectSpan.addClass(getClass('Disabled'));
+                            customSelectSpan.addClass(getClass('disabled'));
                         } else {
-                            customSelectSpan.removeClass(getClass('Disabled'));
+                            customSelectSpan.removeClass(getClass('disabled'));
                         }
 
                         customSelectInnerSpan.css({
@@ -99,11 +99,11 @@
                         });
                     })
                     .on('change.customSelect', function () {
-                        customSelectSpan.addClass(getClass('Changed'));
+                        customSelectSpan.addClass(getClass('changed'));
                         changed($select,customSelectSpan);
                     })
                     .on('keyup.customSelect', function (e) {
-                        if(!customSelectSpan.hasClass(getClass('Open'))){
+                        if(!customSelectSpan.hasClass(getClass('open'))){
                             $select.trigger('blur.customSelect');
                             $select.trigger('focus.customSelect');
                         }else{
@@ -113,16 +113,16 @@
                         }
                     })
                     .on('mousedown.customSelect', function () {
-                        customSelectSpan.removeClass(getClass('Changed'));
+                        customSelectSpan.removeClass(getClass('changed'));
                     })
                     .on('mouseup.customSelect', function (e) {
                         
-                        if( !customSelectSpan.hasClass(getClass('Open'))){
+                        if( !customSelectSpan.hasClass(getClass('open'))){
                             // if FF and there are other selects open, just apply focus
-                            if($('.'+getClass('Open')).not(customSelectSpan).length>0 && typeof InstallTrigger !== 'undefined'){
+                            if($('.'+getClass('open')).not(customSelectSpan).length>0 && typeof InstallTrigger !== 'undefined'){
                                 $select.trigger('focus.customSelect');
                             }else{
-                                customSelectSpan.addClass(getClass('Open'));
+                                customSelectSpan.addClass(getClass('open'));
                                 e.stopPropagation();
                                 $(document).one('mouseup.customSelect', function (e) {
                                     if( e.target != $select.get(0) && $.inArray(e.target,$select.find('*').get()) < 0 ){
@@ -135,16 +135,16 @@
                         }
                     })
                     .on('focus.customSelect', function () {
-                        customSelectSpan.removeClass(getClass('Changed')).addClass(getClass('Focus'));
+                        customSelectSpan.removeClass(getClass('changed')).addClass(getClass('focus'));
                     })
                     .on('blur.customSelect', function () {
-                        customSelectSpan.removeClass(getClass('Focus')+' '+getClass('Open'));
+                        customSelectSpan.removeClass(getClass('focus')+' '+getClass('open'));
                     })
                     .on('mouseenter.customSelect', function () {
-                        customSelectSpan.addClass(getClass('Hover'));
+                        customSelectSpan.addClass(getClass('hover'));
                     })
                     .on('mouseleave.customSelect', function () {
-                        customSelectSpan.removeClass(getClass('Hover'));
+                        customSelectSpan.removeClass(getClass('hover'));
                     })
                     .trigger('render.customSelect');
             });

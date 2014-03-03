@@ -5,37 +5,37 @@
 ### Initiate the plugin
 ```javascript
 $(document).ready(function(){
-	$('#someSelectBox').customSelect();
+	$('#some-select-box').customSelect();
 });
 ```
 ### Style using CSS however you like
 ```CSS
-.customSelect { 
+.custom-select { 
 /* This is the default class that is used */
 /* Put whatever custom styles you want here */
 }
 
-.customSelect.customSelectHover {
+.custom-select.custom-select-hover {
 /* Styles for when the select box is hovered */
 }
 
-.customSelect.customSelectOpen {
+.custom-select.custom-select-hpen {
 /* Styles for when the select box is open */
 }
 
-.customSelect.customSelectFocus {
+.custom-select.custom-select-focus {
 /* Styles for when the select box is in focus */
 }
 
-.customSelect.customSelectDisabledOption {
+.custom-select.custom-select-disabled-option {
 /* Styles for when the selected item is a disabled one */
 }
 
-.customSelect.customSelectDisabled {
+.custom-select.custom-select-disabled {
 /* Styles for when the select box itself is disabled */
 }
 
-.customSelectInner {
+.custom-select-inner {
 /* You can style the inner box too */
 }
 ```
@@ -47,13 +47,13 @@ $(document).ready(function(){
 ### Trigger an update on the select box
 Useful if any modifications are made to the select box after customSelect() has been applied
 ```javascript
-$('#someSelectBox').customSelect();
+$('#some-select-box').customSelect();
 
 // as an example....
-$('#someSelectBox').width(500).append('<option>New!</option>');
+$('#some-select-box').width(500).append('<option>New!</option>');
 
 // Trigger an refresh on the select box. Good as new!
-$('#someSelectBox').trigger('update');
+$('#some-select-box').trigger('update');
 ```
 
 ### Making customSelect responsive
@@ -62,15 +62,15 @@ The best way to do this is with `matchMedia`. Consider using a [matchMedia polyf
 ```javascript
 // add a media query listener and trigger a customSelect update whenever the query gets matched or unmatched
 matchMedia('only screen and (max-width: 480px)').addListener(function(list){
-    $('#mySelectBox').trigger('update');
+    $('#my-select-box').trigger('update');
 });
 ```
 
 ## Options
 There are a few extra options if you need them
 ```javascript
-$('#someSelectBox').customSelect({
-    customClass: "mySexySelect", // Specify a different class name (default is 'customSelect')
+$('#some-select-box').customSelect({
+    customClass: "my-select", // Specify a different class name (default is 'custom-select')
     mapClass:    true, // Copy any existing classes from the given select element (defaults to true)
     mapStyle:    true // Copy the value of the style attribute from the given select element (defaults to true)
 });
