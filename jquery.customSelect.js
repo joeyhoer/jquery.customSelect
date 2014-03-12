@@ -78,9 +78,15 @@
                                 (parseInt(customSelectSpan.outerWidth(), 10) -
                                     parseInt(customSelectSpan.width(), 10));
                         
-                        // Set to inline-block before calculating outerHeight
+                        // In case of selects being hidden on the page, check display. 
+                        var isHidden = false;
+                        if ($select.css('display') == 'none') {
+                            isHidden = true;
+                        }
+
+                        // If select is visible, set to inline-block before calculating outerHeight
                         customSelectSpan.css({
-                            display: 'inline-block'
+                            display: isHidden ? 'none' : 'inline-block'
                         });
                         
                         var selectBoxHeight = customSelectSpan.outerHeight();
@@ -100,6 +106,7 @@
                             '-webkit-appearance': 'menulist-button',
                             width:                customSelectSpan.outerWidth(),
                             position:             'absolute',
+                            'z-index':            1,
                             opacity:              0,
                             height:               selectBoxHeight,
                             fontSize:             customSelectSpan.css('font-size')
